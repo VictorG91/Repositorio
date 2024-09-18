@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function botonInterno(){
+            alert("Este es un mensaje desde JavaScript interno");
+    }
+
+    </script>
+</head>
+<body>
+    <h1>Ejemplos de Inserción de JavaScript</h1>
+
+    <button onclick= botonLinea()> <script>
+        function botonLinea(){
+            alert("Este es un mensaje desde JavaScript en linea");}
+    </script> Clic en mi(En linea)</button>
+    <button onclick=botonInterno()>Clic en mi(Interno)</button>
+    <button onclick=botonExterno()>Clic en mi(Externo)</button>
+
+    <script src="script.js"></script>
+</body>
+</html>
