@@ -1,7 +1,26 @@
 .custom-padding {
-    padding-left: 7% !important;; 
-    padding-right: 7% !important;;
+    padding-left: 5% !important;
+    padding-right: 5% !important;
 }
+
+img{
+    height: 80%;
+    margin: 5%; 
+}
+
+.card{
+    height: 100% !important;
+}
+
+.card-title{
+    font-weight: bold;
+}
+
+.card .badge{
+    width: fit-content;
+}
+
+
 
 footer p{
     font-weight: bold;
