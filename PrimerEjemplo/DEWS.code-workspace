@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../../../DEWS"
+		},
+		{
+			"path": "../Bootstrap"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "Bootstrap"
+	}
+}
