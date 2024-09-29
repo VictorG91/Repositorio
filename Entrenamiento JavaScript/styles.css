@@ -1,0 +1,29 @@
+body{
+    margin: 20dvb;
+    background-color: bisque;
+}
+
+.parrafo {
+    color: blue;
+    size: 10rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+}
+
+.btn{
+    padding: 10pt;
+    color: white;
+    background-color: blue;
+    border: 1px solid blueviolet;
+}
+
+.btn:hover{
+    background-color: aquamarine;
+    color: black;
+}
+
+.contenedor{
+    display: flex;
+    flex-direction: column;
+    border: 2px solid black;
+}
