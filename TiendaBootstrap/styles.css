@@ -2,11 +2,27 @@
     padding-left: 5% !important;
     padding-right: 5% !important;
 }
+.promotion{
+    align-items: space-around;
+}
+
+
+.offer{
+    color: rgb(219, 8, 8);
+    align-self: flex-start;
+    padding-top: 3%;
+}
+
+.price{
+   margin-right: 5%;
+}
 
 img{
     height: 80%;
     margin: 5%; 
 }
+
+
 
 .card{
     height: 100% !important;
@@ -18,6 +34,13 @@ img{
 
 .card .badge{
     width: fit-content;
+}
+
+.container_sorteo{
+    background-color:rgb(232, 237, 248);
+}
+.sorteo{
+    justify-content: center;
 }
 
 footer p{
