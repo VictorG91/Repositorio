@@ -7,8 +7,8 @@ document.addEventListener('DOMContentLoaded', function(event){
     var telephone = document.getElementById('phone');
 
     btnSubmit.addEventListener('click', function(event){
-        validarEmail()
-
+        
+        
 
     })
     
