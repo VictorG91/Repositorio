@@ -15,19 +15,17 @@ document.addEventListener('DOMContentLoaded', function (event) {
             return;
         }
     
-        if (nombre.length < 3) {
-            alert('El nombre debe de tener al menos 3 caracteres.');
-            return;
-        }
-    
         if (!validarTelefono(telefono)) {
             alert('Introduzca un numero de telefono con 9 digitos.');
             return;
         }
     
-        if (edad < 0 || edad > 120) {
-            alert('Introduzca una edad correcta entre 0 y 120.');
-            return;
+        if(validarEmail && validarTelefono){
+            alert('Nombre: ' + nombre +
+                'Edad: ' + edad +
+                'Email: ' + email +
+                'Teléfono: ' + telefono
+            )
         }
     });
     
