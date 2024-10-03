@@ -27,6 +27,12 @@ document.addEventListener('DOMContentLoaded', function (event) {
         event.target.style.background = "";
     })
 
+    nombre.addEventListener('focus', function(event){
+        nombre.placeholder='';
+        event.target.style.color = "";
+        event.target.style.background = "";
+    })
+
     apellidos.addEventListener("blur", function (event) {
         if(apellidos.value === ''){
             apellidos.value='';
@@ -38,6 +44,12 @@ document.addEventListener('DOMContentLoaded', function (event) {
 
         apellidos.value = apellidos.value.toUpperCase();
         validar[1] = 'true';
+        event.target.style.color = "";
+        event.target.style.background = "";
+    })
+
+    apellidos.addEventListener('focus', function(event){
+        apellidos.placeholder='';
         event.target.style.color = "";
         event.target.style.background = "";
     })
@@ -54,9 +66,12 @@ document.addEventListener('DOMContentLoaded', function (event) {
 
         direccion.value = direccion.value.toUpperCase();
         validar[2] = 'true';
+    })
+
+    direccion.addEventListener('focus', function(event){
+        direccion.placeholder='';
         event.target.style.color = "";
         event.target.style.background = "";
-
     })
 
     email.addEventListener("blur", function(event) {
@@ -128,6 +143,12 @@ document.addEventListener('DOMContentLoaded', function (event) {
         event.target.style.background = "";
     })
 
+    edad.addEventListener('focus', function(event){
+        edad.placeholder='';
+        event.target.style.color = "";
+        event.target.style.background = "";
+    })
+
     dni.addEventListener("blur", function(event) {
         if (!validarDni(dni.value)) {
             dni.value = '';
@@ -142,6 +163,11 @@ document.addEventListener('DOMContentLoaded', function (event) {
         event.target.style.background = "";
     })
 
+    dni.addEventListener('focus', function(event){
+        dni.placeholder='';
+        event.target.style.color = "";
+        event.target.style.background = "";
+    })
 
     btnSubmit.addEventListener('click', function(event) {
 
