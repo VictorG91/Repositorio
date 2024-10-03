@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
     let telefono = document.getElementById('telefono');
     let edad = document.getElementById('edad');
     let dni = document.getElementById('dni');
-    let elementos = document.getElementsByTagName('input');
+    let validar = new Array();
 
     nombre.addEventListener("blur", function (event) {
 
@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
         }
 
         nombre.value = nombre.value.toUpperCase();
+        validar[0] = 'true';
         event.target.style.color = "";
         event.target.style.background = "";
     })
@@ -36,11 +37,13 @@ document.addEventListener('DOMContentLoaded', function (event) {
         }
 
         apellidos.value = apellidos.value.toUpperCase();
+        validar[1] = 'true';
         event.target.style.color = "";
         event.target.style.background = "";
     })
 
     direccion.addEventListener("blur", function (event) {
+
         if(direccion.value === ''){
             direccion.value='';
             direccion.placeholder='Este campo no puede estar vacío.';
@@ -50,6 +53,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
         }
 
         direccion.value = direccion.value.toUpperCase();
+        validar[2] = 'true';
         event.target.style.color = "";
         event.target.style.background = "";
 
@@ -72,11 +76,18 @@ document.addEventListener('DOMContentLoaded', function (event) {
             event.target.style.background = "red";
             return;
         }
+        
+        validar[3] = 'true';
     })
 
-
+    email.addEventListener('focus', function(event){
+        email.placeholder='';
+        event.target.style.color = "";
+        event.target.style.background = "";
+    })
 
     telefono.addEventListener("blur", function(event) {
+
         if(telefono.value === ''){
             telefono.value='';
             telefono.placeholder='Este campo no puede estar vacío.';
@@ -92,6 +103,14 @@ document.addEventListener('DOMContentLoaded', function (event) {
             event.target.style.color = "white";
             return;
         }
+
+        validar[4] = 'true';
+    })
+
+    telefono.addEventListener('focus', function(event){
+        telefono.placeholder='';
+        event.target.style.color = "";
+        event.target.style.background = "";
     })
 
     edad.addEventListener("blur", function(event){
@@ -103,6 +122,10 @@ document.addEventListener('DOMContentLoaded', function (event) {
             event.target.style.color = "white";
             return;
         }
+
+        validar[5] = 'true';
+        event.target.style.color = "";
+        event.target.style.background = "";
     })
 
     dni.addEventListener("blur", function(event) {
@@ -112,33 +135,53 @@ document.addEventListener('DOMContentLoaded', function (event) {
             event.target.style.background = "red";
             return;
         }
+
+        dni.value = dni.value.toUpperCase();
+        validar[6] = 'true';
+        event.target.style.color = "";
+        event.target.style.background = "";
     })
 
+
     btnSubmit.addEventListener('click', function(event) {
-        if(!input==empty){
+
+        if(elementos==''){
             alert('Nombre: ' + nombre.value +
                 'Edad: ' + edad.value +
                 'Email: ' + email.value +
                 'Teléfono: ' + telefono.value
             )
-            
         }
     });
     
-    });
+});
     
-    function validarEmail(email) {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
-    }
+function validarEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
     
-     
-    function validarTelefono(telefono){
-        const telefonoRegex = /^[0-9]{9}$/;
-        return telefonoRegex.test(telefono);
+function validarTelefono(telefono){
+    const telefonoRegex = /^[0-9]{9}$/;
+    return telefonoRegex.test(telefono);
+}
+
+function validarDni(dni) {
+    const regex = /^\d{1,8}[A-Za-z]$/;
+    return regex.test(dni);
+}
+
+function enableButton(){
+    for(let i = 0; i < validar.lenght; i++){
+        if(array[i] =='true'){
+
+        }
+
     }
 
-    function validarDni(dni) {
-        const regex = /^\d{1,8}[A-Za-z]$/;
-        return regex.test(dni);
-      }
+    if(elementos.value==''){
+        btnSubmit.setAttribute("disabled","true");
+    } else {
+        btnSubmit.setAttribute("disabled","false");
+    }
+}

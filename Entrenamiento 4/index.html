@@ -27,9 +27,9 @@
         <label for="edad">Edad</label>
         <input type="text" id="edad" placeholder="" required>
         <label for="dni">DNI</label>
-        <input type="text" id="dni" placeholder="" required>
+        <input onkeyup="enableButton()" type="text" id="dni" placeholder="" required>
         <input type="checkbox" required>Acepta los términos.
-        <button type="submit" id="btnEnviar">Enviar</button>
+        <button type="submit" id="btnEnviar" disabled>Enviar</button>
     </form>
     <script src="script.js"></script>
 </body>
