@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
     let telefono = document.getElementById('telefono');
     let edad = document.getElementById('edad');
     let dni = document.getElementById('dni');
-    let validar = new Array();
+    let validar = [false, false, false, false, false, false, false];
 
     nombre.addEventListener("blur", function (event) {
 
@@ -22,9 +22,8 @@ document.addEventListener('DOMContentLoaded', function (event) {
         }
 
         nombre.value = nombre.value.toUpperCase();
-        validar[0] = 'true';
-        event.target.style.color = "";
-        event.target.style.background = "";
+        validar[0] = true;
+        enableButton()
     })
 
     nombre.addEventListener('focus', function(event){
@@ -43,9 +42,8 @@ document.addEventListener('DOMContentLoaded', function (event) {
         }
 
         apellidos.value = apellidos.value.toUpperCase();
-        validar[1] = 'true';
-        event.target.style.color = "";
-        event.target.style.background = "";
+        validar[1] = true;
+        enableButton()
     })
 
     apellidos.addEventListener('focus', function(event){
@@ -65,7 +63,8 @@ document.addEventListener('DOMContentLoaded', function (event) {
         }
 
         direccion.value = direccion.value.toUpperCase();
-        validar[2] = 'true';
+        validar[2] = true;
+        enableButton()
     })
 
     direccion.addEventListener('focus', function(event){
@@ -92,7 +91,8 @@ document.addEventListener('DOMContentLoaded', function (event) {
             return;
         }
         
-        validar[3] = 'true';
+        validar[3] = true;
+        enableButton()
     })
 
     email.addEventListener('focus', function(event){
@@ -119,7 +119,8 @@ document.addEventListener('DOMContentLoaded', function (event) {
             return;
         }
 
-        validar[4] = 'true';
+        validar[4] = true;
+        enableButton()
     })
 
     telefono.addEventListener('focus', function(event){
@@ -130,7 +131,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
 
     edad.addEventListener("blur", function(event){
 
-        if (Number(edad.value) < 0 || Number(edad.value) > 120){
+        if (Number(edad.value) < 0 || Number(edad.value) > 120 || Number(edad.value) == ''){
             edad.value = '';
             edad.placeholder = 'Introduzca una edad válida.';
             event.target.style.background = "red";
@@ -138,9 +139,8 @@ document.addEventListener('DOMContentLoaded', function (event) {
             return;
         }
 
-        validar[5] = 'true';
-        event.target.style.color = "";
-        event.target.style.background = "";
+        validar[5] = true;
+        enableButton()
     })
 
     edad.addEventListener('focus', function(event){
@@ -158,9 +158,8 @@ document.addEventListener('DOMContentLoaded', function (event) {
         }
 
         dni.value = dni.value.toUpperCase();
-        validar[6] = 'true';
-        event.target.style.color = "";
-        event.target.style.background = "";
+        validar[6] = true;
+        enableButton()
     })
 
     dni.addEventListener('focus', function(event){
@@ -179,6 +178,21 @@ document.addEventListener('DOMContentLoaded', function (event) {
             )
         }
     });
+
+    function enableButton(){
+        let contadorFalse = 0;
+        for(let i = 0; i < validar.length; i++){
+            if(validar[i] == false){
+                contadorFalse++;
+            }
+        }
+    
+        if(contadorFalse > 0){
+            btnSubmit.disabled = true;
+        } else {
+            btnSubmit.disabled = false;
+        }
+    }
     
 });
     
@@ -197,17 +211,3 @@ function validarDni(dni) {
     return regex.test(dni);
 }
 
-function enableButton(){
-    for(let i = 0; i < validar.lenght; i++){
-        if(array[i] =='true'){
-
-        }
-
-    }
-
-    if(elementos.value==''){
-        btnSubmit.setAttribute("disabled","true");
-    } else {
-        btnSubmit.setAttribute("disabled","false");
-    }
-}
