@@ -1,0 +1,1 @@
+Poner a false boolean si se vuelve a escribir un campo que ya estaba validado.
