@@ -9,21 +9,24 @@
 .container{
     display: flex;
     justify-content: space-around;
-    width: 100%;
+    width: 90%;
 }
 
 .container-head-table{
     width: 100%;
-
 }
 .head-table{
+    width: 70%;
     margin-top: 30px;
+    margin-left: 100px;
     border-bottom: solid 1px;
+    align-items: flex-start;
 }
 
 .compra{
     width: 30%;
     height: auto;
+    margin-top: 30px;
     background-color: rgb(226, 223, 223);
 }
 
