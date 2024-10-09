@@ -1,4 +1,4 @@
-export default class Carrito {
+class Carrito {
 
     constructor(productos) {
         
@@ -15,6 +15,5 @@ export default class Carrito {
     obtenerCarrito(){
 
     }
-
 
 }
