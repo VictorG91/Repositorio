@@ -8,20 +8,20 @@
 
 .container{
     display: flex;
-    justify-content: space-around;
-    width: 90%;
-}
-
-.container-head-table{
-    width: 100%;
-    text-align: left;
+    justify-content: flex-start;
 }
 
 .head-table{
+    border-bottom: solid 1px;
+
+}
+
+.cestaCompra{
+    display: flex;
+    justify-content: flex-start;
     width: 70%;
     margin-top: 30px;
     margin-left: 100px;
-    border-bottom: solid 1px;
     align-items: flex-start;
 }
 

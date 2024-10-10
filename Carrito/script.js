@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function(event) {
-
+/*
     const listadoProductos = [{
         nombre: "iPhone 13",
         sku: "0K3QOSOV4V",
@@ -16,11 +16,14 @@ document.addEventListener('DOMContentLoaded', function(event) {
         precio: 16.95
     }];
 
-    const section = document.getElementById('principal');
-    const producto1 = document.createElement('p');
-    producto1.innerText = "iPhone 13";
+    const divP = document.getElementById('celda');
+    const row = document.createElement('tr')
+    const producto1 = document.createElement('td');
+    producto1.innerText = "iPhone 45";
 
-    section.append(producto1);
+    row.appendChild(producto1);
+    divP.append(row);
+    */
 });
 
     

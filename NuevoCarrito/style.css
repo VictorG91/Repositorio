@@ -1,0 +1,29 @@
+.shopName{
+    border-bottom: gray solid 1px;
+}
+
+.name{
+    margin-left: 50px;
+}
+
+.tabla{
+    display: column;
+    width: 50%;
+    margin-top: 50px;
+    margin-left: 50px;
+}
+
+.cabeceraTabla {
+    justify-items: flex-start;
+    border-bottom: black 2px;
+}
+
+.cuerpoTabla{
+    justify-content: space-between;
+
+}
+
+.celda{
+    display: flex;
+    flex-direction: column;
+}
