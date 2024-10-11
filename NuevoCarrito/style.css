@@ -6,24 +6,30 @@
     margin-left: 50px;
 }
 
-.tabla{
-    display: column;
+.tabla {
     width: 50%;
     margin-top: 50px;
     margin-left: 50px;
+    border-collapse: collapse;
 }
 
-.cabeceraTabla {
-    justify-items: flex-start;
-    border-bottom: black 2px;
+.cabeceraTabla th{
+    text-align: left;
+    padding: 10px;   
+    border-bottom: 2px solid black;
 }
 
-.cuerpoTabla{
-    justify-content: space-between;
-
+.cuerpoTabla td{
+    padding: 20px; 
+    border-bottom: 1px solid #ccc; 
 }
 
 .celda{
     display: flex;
     flex-direction: column;
 }
+
+.inputCantidad{
+    width: 40px;
+}
+
