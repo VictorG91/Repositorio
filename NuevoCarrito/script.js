@@ -113,10 +113,11 @@ document.addEventListener('DOMContentLoaded', function(event) {
         const sku = producto.sku;
         const fila = document.getElementById(`fila-${sku}`);
         if(fila){
-            fila.querySelector('.celda1').innerText = producto.nombre + " x " + inputCantidad;
-            fila.querySelector('.celda2').innerText = inputCantidad*producto.precio;
-            carrito.actualizarCarrito(producto, inputCantidad);
+            carrito.actualizarCarrito(producto, inputCantidad.value);
+            fila.querySelector('.celda1').innerText = carrito.obtenerCarrito(producto.nombre) + " x " + inputCantidad.value;
+            fila.querySelector('.celda2').innerText = inputCantidad.value*carrito.obtenerCarrito(producto.precio);
         } else {
+            carrito.agregarProducto(producto, inputCantidad.value);
             const celda = document.getElementById('cuerpoCarrito');
             const row = document.createElement('tr');
             row.id = `fila-${sku}`;
@@ -126,14 +127,13 @@ document.addEventListener('DOMContentLoaded', function(event) {
             row.classList.add('fila');
             cel1.classList.add('celda1');
             cel2.classList.add('celda2');
-            cel1.innerText = producto.nombre + " x " + inputCantidad;
-            cel2.innerText = inputCantidad*producto.precio;
+            cel1.innerText = carrito.obtenerCarrito(producto.nombre) + " x " + inputCantidad;
+            cel2.innerText = inputCantidad*carrito.obtenerCarrito(producto.precio);
             
             row.appendChild(cel1);
             row.appendChild(cel2);
             celda.append(row);
             alert("Se ha agregado al carrito " + producto.nombre + " cantidad " + inputCantidad);
-            carrito.agregarProducto(producto, inputCantidad);
         }
     
     };

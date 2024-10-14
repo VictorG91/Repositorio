@@ -1,12 +1,12 @@
 export default class Carrito {
 
-
+    #productos;
     constructor() {
         this.productos = new Map();
     }
 
     agregarProducto(producto, cantidad){
-        this.productos.set(producto, cantidad); 
+        this.productos.set(producto, cantidad);
     };
 
     actualizarCarrito(producto, cantidad){
@@ -17,7 +17,7 @@ export default class Carrito {
         }
         if(fila){
             fila.querySelector('.celda1').innerText = producto.nombre + " x " + cantidad;
-            fila.querySelector('.celda2').innerText = cantidad*producto.precio;
+            fila.querySelector('.celda2').innerText = cantidad*this.#productos.precio;
             this.productos.set(sku, producto);
         }
     };
@@ -28,6 +28,12 @@ export default class Carrito {
             this.productos.delete(sku);
             fila.remove();
         }
+    }
+    
+
+    obtenerCarrito(producto, cantidad){
+        producto = this.#productos;
+        this.productos.get(producto, cantidad)
     }
     
 }
