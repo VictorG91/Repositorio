@@ -26,13 +26,14 @@ document.addEventListener('DOMContentLoaded', function(event) {
             const cel3 = document.createElement('td');
             const cel4 = document.createElement('td');
             cel1.innerText = producto.nombre;
-            inputCantidad.value = producto.cantidad;
-            cel3.innerText = producto.precio;
-            const precioTotal = producto.precio*producto.cantidad;
+            inputCantidad.value = 0;
+            cel3.innerText = producto.precio + " " + productos.moneda;
+            const precioTotal = (producto.precio*inputCantidad.value) + " " + productos.moneda;
             cel4.innerText = precioTotal;
             span1.innerText = "SKU: "  + producto.sku;
             btnMenos.innerText = "-";
             btnMas.innerText = "+";
+            const sku = producto.sku;
         
             cel1.classList.add('celda');
             cel2.classList.add('cantidades');
@@ -48,43 +49,48 @@ document.addEventListener('DOMContentLoaded', function(event) {
             row.appendChild(cel4);
             celda.append(row);
 
-            
             btnMenos.addEventListener('click', function(){
-                        
-                if(producto.cantidad > 0){
-                    producto.cantidad--;
-                    inputCantidad.value = producto.cantidad;
-                    cel4.innerText = producto.precio*producto.cantidad;
-                    carrito.agregarProducto(producto);
-                } 
 
-            });
-
-            btnMas.addEventListener('click', function(){
-                if(producto.cantidad < 99){
-                    producto.cantidad++;
-                    inputCantidad.value = producto.cantidad;
-                    cel4.innerText = producto.precio*producto.cantidad;
-                    carrito.agregarProducto(producto);
+                if(inputCantidad.value > 0){
+                    inputCantidad.value --;
+                    agregarProducto(producto, inputCantidad.value)
+                }  else {
+                    const fila = document.getElementById(`fila-${sku}`);
+                    if (fila) {
+                        carrito.eliminarProducto(sku);
+                        fila.remove();
+                    }
                 }
             });
 
+            btnMas.addEventListener('click', function(){
+                if(inputCantidad.value < 99){
+                    inputCantidad.value++;
+                    cel4.innerText = producto.precio*inputCantidad.value;
+                    agregarProducto(producto, inputCantidad.value);
+                }
+                                
+            });
+
             inputCantidad.addEventListener('blur', function(event){
-                const sku = producto.sku;
                 if(inputCantidad.value <= 0 ){
                     inputCantidad.value = 0;
-                    carrito.eliminarProducto(sku);
+                    const fila = document.getElementById(`fila-${sku}`);
+                    if (fila) {
+                        carrito.eliminarProducto(sku);
+                        fila.remove();
+                    }
                 } 
 
                 if(inputCantidad.value > 99){
                     inputCantidad.value = 99;
-                    producto.cantidad = inputCantidad.value;
                     cel4.innerText = inputCantidad.value*producto.precio;
-                    carrito.agregarProducto(producto);
+                    agregarProducto(producto, inputCantidad.value);
+                    carrito.agregarProducto(producto, inputCantidad.value);
                 } else {
                     producto.cantidad = inputCantidad.value;
                     cel4.innerText = inputCantidad.value*producto.precio;
-                    carrito.agregarProducto(producto);
+                    carrito.agregarProducto(producto, inputCantidad.value);
                 } 
 
             });
@@ -103,5 +109,33 @@ document.addEventListener('DOMContentLoaded', function(event) {
         console.error('Error en la solicitud:', error);
     });
     
+    function agregarProducto(producto, inputCantidad){
+        const sku = producto.sku;
+        const fila = document.getElementById(`fila-${sku}`);
+        if(fila){
+            fila.querySelector('.celda1').innerText = producto.nombre + " x " + inputCantidad;
+            fila.querySelector('.celda2').innerText = inputCantidad*producto.precio;
+            carrito.actualizarCarrito(producto, inputCantidad);
+        } else {
+            const celda = document.getElementById('cuerpoCarrito');
+            const row = document.createElement('tr');
+            row.id = `fila-${sku}`;
+            const cel1 = document.createElement('td');
+            const cel2 = document.createElement('td');
+            
+            row.classList.add('fila');
+            cel1.classList.add('celda1');
+            cel2.classList.add('celda2');
+            cel1.innerText = producto.nombre + " x " + inputCantidad;
+            cel2.innerText = inputCantidad*producto.precio;
+            
+            row.appendChild(cel1);
+            row.appendChild(cel2);
+            celda.append(row);
+            alert("Se ha agregado al carrito " + producto.nombre + " cantidad " + inputCantidad);
+            carrito.agregarProducto(producto, inputCantidad);
+        }
+    
+    };
 });
 
