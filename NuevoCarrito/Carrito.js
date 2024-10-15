@@ -7,26 +7,24 @@ export default class Carrito {
 
     actualizarCarrito(producto, cantidad){
         const sku = producto.sku;
-        const fila = document.getElementById(`fila-${sku}`);
         if (cantidad === 0){
             this.productos.delete(sku);
-        }
-        if(fila){
+        } else {
             this.productos.set(producto, cantidad);
-            fila.querySelector('.celda1').innerText = producto.nombre + " x " + cantidad;
-            fila.querySelector('.celda2').innerText = cantidad*this.productos.precio;
         }
     };
    
 
     obtenerCarrito(){
         this.productos.forEach(function (producto){
-
+            const precioTotal = producto.precio*producto.cantidad;
+            this.productos.get(producto.nombre, producto.cantidad, precioTotal)
         })
 
         return{
             nombre: producto.nombre,
-            cantidad: producto.cantidad
+            cantidad: producto.cantidad,
+            precioTotal: producto.precio*producto.cantidad
         }
     }
     
