@@ -51,9 +51,18 @@ document.addEventListener('DOMContentLoaded', function(event) {
 
             btnMenos.addEventListener('click', function(){
 
+                const lineaCarrito = {
+                    nombre: producto.nombre,
+                    sku: producto.sku,
+                    cantidad: 0,
+                    precio: producto.precio
+                }
+
+                cantidad = inputCantidad.value
                 if(inputCantidad.value > 0){
                     inputCantidad.value --;
-                    agregarProducto(producto, inputCantidad.value)
+                    inputCantidad = cantidad; 
+                    imprimirCarrito(lineaCarrito)
                 }  else {
                     const fila = document.getElementById(`fila-${sku}`);
                     if (fila) {
@@ -67,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
                 if(inputCantidad.value < 99){
                     inputCantidad.value++;
                     cel4.innerText = producto.precio*inputCantidad.value;
-                    agregarProducto(producto, inputCantidad.value);
+                    imprimirCarrito(producto, inputCantidad.value);
                 }
                                 
             });
@@ -85,12 +94,10 @@ document.addEventListener('DOMContentLoaded', function(event) {
                 if(inputCantidad.value > 99){
                     inputCantidad.value = 99;
                     cel4.innerText = inputCantidad.value*producto.precio;
-                    agregarProducto(producto, inputCantidad.value);
-                    carrito.agregarProducto(producto, inputCantidad.value);
+                    imprimirCarrito(producto, inputCantidad.value);
                 } else {
                     producto.cantidad = inputCantidad.value;
                     cel4.innerText = inputCantidad.value*producto.precio;
-                    carrito.agregarProducto(producto, inputCantidad.value);
                 } 
 
             });
@@ -109,11 +116,15 @@ document.addEventListener('DOMContentLoaded', function(event) {
         console.error('Error en la solicitud:', error);
     });
     
-    function agregarProducto(producto, inputCantidad){
+    function imprimirCarrito(lineaCarrito){
+        fila.querySelector('.celda1').innerText = "";
+        fila.querySelector('.celda2').innerText = "";
+
         const sku = producto.sku;
         const fila = document.getElementById(`fila-${sku}`);
         if(fila){
             carrito.actualizarCarrito(producto, inputCantidad.value);
+            carrito.obtenerCarrito(producto, cantidad);
             fila.querySelector('.celda1').innerText = carrito.obtenerCarrito(producto.nombre) + " x " + inputCantidad.value;
             fila.querySelector('.celda2').innerText = inputCantidad.value*carrito.obtenerCarrito(producto.precio);
         } else {
@@ -137,5 +148,6 @@ document.addEventListener('DOMContentLoaded', function(event) {
         }
     
     };
+    
 });
 
