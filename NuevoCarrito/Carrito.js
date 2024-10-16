@@ -1,39 +1,63 @@
 export default class Carrito {
 
-    #productos;
     constructor() {
         this.productos = new Map();
     }
 
-    agregarProducto(producto, cantidad){
-        this.productos.set(producto, cantidad);
-    };
 
-    actualizarCarrito(producto, cantidad){
-        const sku = producto.sku;
-        const fila = document.getElementById(`fila-${sku}`);
-        if (cantidad === 0){
-            eliminarProducto(sku); 
+    actualizarCarrito(sku, cantidad){
+        if(this.productos.has(sku)){
+            const producto = this.productos.get(sku);
+            producto.cantidad = cantidad;
+            this.productos.set(sku, cantidad);
         }
-        if(fila){
-            fila.querySelector('.celda1').innerText = producto.nombre + " x " + cantidad;
-            fila.querySelector('.celda2').innerText = cantidad*this.#productos.precio;
-            this.productos.set(sku, producto);
-        }
-    };
+    }
 
-    eliminarProducto(sku) {
-        const fila = document.getElementById(`fila-${sku}`);
-        if (fila) {
+    eliminarProducto(sku){
+        if(this.productos.has(sku)){
             this.productos.delete(sku);
-            fila.remove();
         }
-    }
+    };
     
 
-    obtenerCarrito(producto, cantidad){
-        producto = this.#productos;
-        this.productos.get(producto, cantidad)
-    }
+    obtenerInfoProducto(sku) {
+        if (this.productos.has(sku)) {
+          const producto = this.productos.get(sku);
+          return {
+            sku: producto.SKU,
+            nombre: producto.nombre,
+            precio: producto.precio,
+            cantidad: producto.cantidad
+          };
+        }
+        return null;
+      }
+
+    calcularTotal() {
+        let total = 0;
+        this.productos.forEach(producto => {
+          total += producto.precio * producto.cantidad;
+        });
+        return total.toFixed(2);
+      }
+
+    obtenerCarrito() {
+        const products = [];
+        this.productos.forEach(producto => {
+          if (producto.quantity > 0) {
+            products.push({
+                sku: producto.SKU,
+                nombre: producto.nombre,
+                precio: producto.precio,
+                cantidad: producto.cantidad
+            });
+          }
+        });
     
+        return {
+          total: this.calcularTotal(),
+          currency: "€",
+          products
+        };
+      }
 }
