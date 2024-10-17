@@ -110,6 +110,6 @@ document.addEventListener('DOMContentLoaded', function(event) {
         });
 
         const footerCarrito = document.getElementById('footerCarrito');
-        footerCarrito.innerText = `Total: ${carritoProductos.total} ${carritoProductos.moneda}`;
+        footerCarrito.innerText = "Total: " + carritoProductos.total + carritoProductos.moneda;
     }
 });
