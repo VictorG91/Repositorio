@@ -20,7 +20,7 @@ export default class Carrito {
             this.productos.set(sku, nuevoProducto);
 
             } else {
-                this.productos.delete(sku);
+                this.eliminarProducto(producto);
             }
     }
 
@@ -49,5 +49,11 @@ export default class Carrito {
             total += producto.precio * producto.cantidad;
         });
         return total.toFixed(2);
+    }
+
+    eliminarProducto(sku){
+        if(this.productos.has(sku)){
+            this.productos.delete(sku);
+        }
     }
 }

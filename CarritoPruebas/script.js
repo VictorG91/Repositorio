@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
             const cel3 = document.createElement('td');
             const cel4 = document.createElement('td');
 
+            
             cel1.innerText = producto.nombre;
             cel3.innerText = parseFloat(producto.precio).toFixed(2) + " " + moneda;
             cel4.innerText = (parseFloat(producto.precio) * inputCantidad.value).toFixed(2) + " " + moneda;
@@ -34,6 +35,9 @@ document.addEventListener('DOMContentLoaded', function(event) {
             cel1.classList.add('celda');
             cel2.classList.add('cantidades');
             inputCantidad.classList.add('inputCantidad');
+            cel3.classList.add('precios');
+            cel4.classList.add('precios');
+            row.classList.add('linea');
 
             cel1.appendChild(span1);
             cel2.appendChild(btnMenos);
@@ -99,17 +103,27 @@ document.addEventListener('DOMContentLoaded', function(event) {
             const row = document.createElement('tr');
             const cel1 = document.createElement('td');
             const cel2 = document.createElement('td');
+            const btnEliminar = document.createElement('button');
 
-
+            btnEliminar.innerText = 'Eliminar';
             cel1.innerText = prod.nombre + " x " + prod.cantidad;
             cel2.innerText = (parseFloat(prod.precio) * prod.cantidad).toFixed(2) + " " + carritoProductos.moneda;
 
+            cel2.appendChild(btnEliminar);
             row.appendChild(cel1);
             row.appendChild(cel2);
             cuerpoCarrito.appendChild(row);
+
+            btnEliminar.addEventListener('click', function() {
+                carrito.eliminarProducto(prod);
+
+            });
         });
 
         const footerCarrito = document.getElementById('footerCarrito');
         footerCarrito.innerText = "Total: " + carritoProductos.total + carritoProductos.moneda;
     }
+
+
+
 });
