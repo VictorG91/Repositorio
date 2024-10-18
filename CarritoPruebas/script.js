@@ -20,10 +20,12 @@ document.addEventListener('DOMContentLoaded', function(event) {
             inputCantidad.type = 'number';
             inputCantidad.min = 0;
             inputCantidad.value = 0;
+            inputCantidad.setAttribute("obtenSku", producto.sku);
+            
             const btnMas = document.createElement('button');
             const cel3 = document.createElement('td');
             const cel4 = document.createElement('td');
-
+            cel4.setAttribute("resetPrecio", producto.sku);
             
             cel1.innerText = producto.nombre;
             cel3.innerText = parseFloat(producto.precio).toFixed(2) + " " + moneda;
@@ -69,10 +71,19 @@ document.addEventListener('DOMContentLoaded', function(event) {
             inputCantidad.addEventListener('blur', function() {
                 if (inputCantidad.value <= 0) {
                     inputCantidad.value = 0;
+                    cel4.innerText = (parseFloat(producto.precio) * inputCantidad.value).toFixed(2) + " " + moneda;
                     actualizarProductoEnCarrito(producto, 0); 
+                } 
+                if (inputCantidad.value > 99) {
+                    inputCantidad.value = 99;
+                    cel4.innerText = (parseFloat(producto.precio) * inputCantidad.value).toFixed(2) + " " + moneda;
+                    actualizarProductoEnCarrito(producto, inputCantidad.value); 
                 } else {
                     actualizarProductoEnCarrito(producto, inputCantidad.value);
+                    cel4.innerText = (parseFloat(producto.precio) * inputCantidad.value).toFixed(2) + " " + moneda;
                 }
+
+
             });
         });
     };
@@ -96,34 +107,39 @@ document.addEventListener('DOMContentLoaded', function(event) {
 
     function imprimirCarrito() {
         const cuerpoCarrito = document.getElementById('cuerpoCarrito');
-        cuerpoCarrito.innerHTML = ''; 
+        cuerpoCarrito.innerText = ''; 
         const carritoProductos = carrito.obtenerCarrito();
 
         carritoProductos.productos.forEach((prod) => {
             const row = document.createElement('tr');
             const cel1 = document.createElement('td');
             const cel2 = document.createElement('td');
+            const cel3 = document.createElement('td');
             const btnEliminar = document.createElement('button');
+
+            btnEliminar.classList.add('btnEliminar');
 
             btnEliminar.innerText = 'Eliminar';
             cel1.innerText = prod.nombre + " x " + prod.cantidad;
             cel2.innerText = (parseFloat(prod.precio) * prod.cantidad).toFixed(2) + " " + carritoProductos.moneda;
-
-            cel2.appendChild(btnEliminar);
+                        
+            cel3.appendChild(btnEliminar);
             row.appendChild(cel1);
             row.appendChild(cel2);
+            row.appendChild(cel3);
             cuerpoCarrito.appendChild(row);
 
             btnEliminar.addEventListener('click', function() {
-                carrito.eliminarProducto(prod);
-
+                actualizarProductoEnCarrito(prod, 0);
+                const resetInput = document.querySelector(`input[obtenSku = "${prod.sku}"]`);
+                resetInput.value = 0;
+                const resetPrecio = document.querySelector(`td[resetPrecio = "${prod.sku}"]`);
+                resetPrecio.innerText = "0,00" + " " + moneda;
             });
         });
 
         const footerCarrito = document.getElementById('footerCarrito');
         footerCarrito.innerText = "Total: " + carritoProductos.total + carritoProductos.moneda;
     }
-
-
 
 });
