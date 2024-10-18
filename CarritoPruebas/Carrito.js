@@ -1,7 +1,9 @@
 export default class Carrito {
 
+    #productos;
+
     constructor() {
-        this.productos = new Map(); 
+        this.#productos = new Map(); 
     }
 
     actualizarCarrito(producto, cantidad) {
@@ -17,35 +19,25 @@ export default class Carrito {
                 cantidad: cantidad
             };
 
-            this.productos.set(sku, nuevoProducto);
+            this.#productos.set(sku, nuevoProducto);
 
             } else {
-                this.productos.delete(sku);
+                this.#productos.delete(sku);
             }
     }
 
     obtenerCarrito() {
-        const productos = [];
-        this.productos.forEach((producto) => {
-            productos.push({
-                nombre: producto.nombre,
-                sku: producto.sku,
-                precio: producto.precio,
-                cantidad: producto.cantidad
-            });
-        });
-
         const total = this.calcularTotal();
         return {
-            productos,
+            productos: this.#productos,
             total,
             moneda: "€"
-        };
+        }
     }
 
     calcularTotal() {
         let total = 0;
-        this.productos.forEach(producto => {
+        this.#productos.forEach(producto => {
             total += producto.precio * producto.cantidad;
         });
         return total.toFixed(2);

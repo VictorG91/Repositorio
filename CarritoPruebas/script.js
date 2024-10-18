@@ -119,7 +119,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
 
             btnEliminar.classList.add('btnEliminar');
 
-            btnEliminar.innerText = 'Eliminar';
+            btnEliminar.innerText = '🗑️';
             cel1.innerText = prod.nombre + " x " + prod.cantidad;
             cel2.innerText = (parseFloat(prod.precio) * prod.cantidad).toFixed(2) + " " + carritoProductos.moneda;
                         
