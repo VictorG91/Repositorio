@@ -7,10 +7,28 @@
 }
 
 .tabla {
-    width: 50%;
+    width: 700px;
+    height: 400px;
     margin-top: 50px;
     margin-left: 50px;
     border-collapse: collapse;
+}
+
+.tablaCarrito{
+    width: 300px;
+    height: 400px;
+    margin-top: 100px;
+    margin-left: 50px;
+    border-collapse: collapse;
+    background-color: darkgrey;
+}
+
+.tablaCarrito th{
+    padding: 5%;   
+}
+
+.tablaCarrito td{
+    padding: 5%;
 }
 
 .cabeceraTabla th{
@@ -21,7 +39,10 @@
 
 .cuerpoTabla td{
     padding: 20px; 
-    border-bottom: 1px solid #ccc; 
+}
+
+.linea{
+    border-bottom: rgb(236, 236, 236) solid 1px;
 }
 
 .celda{
@@ -30,6 +51,16 @@
 }
 
 .inputCantidad{
-    width: 40px;
+    width: 25px;
+}
+
+.tablas{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.precios{
+    text-align: right;
 }
 

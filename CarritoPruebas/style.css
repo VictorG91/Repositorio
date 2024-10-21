@@ -15,7 +15,8 @@
 }
 
 .tablaCarrito {
-    width: 100%;  
+    width: 600px;  
+    height: 500px;
     table-layout: fixed;  
     margin-top: 50px;
     background-color: rgb(218, 214, 214);
