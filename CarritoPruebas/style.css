@@ -14,9 +14,9 @@
     border-collapse: collapse;
 }
 
-.tablaCarrito{
-    width: 400px;
-    height: 500px;
+.tablaCarrito {
+    width: 100%;  
+    table-layout: fixed;  
     margin-top: 50px;
     background-color: rgb(218, 214, 214);
 }
@@ -28,7 +28,8 @@
     padding: 5%;   
 }
 
-.tablaCarrito td{
+.tablaCarrito td {
+    text-align: center;
     padding: 15px;
     border-bottom: rgb(236, 236, 236) solid 1px;
 }
@@ -84,10 +85,13 @@
     width: 30%;
 }
 
-.cabeceraCarrito{
-    display: flex;
-    justify-content: flex-end;
-    padding: 5px;
+.cabeceraCarrito {
+    display: table-header-group; 
+}
+
+.cabeceraCarrito th {
+    text-align: center; 
+    padding: 10px;
 }
 
 .tituloFooter{
@@ -105,3 +109,4 @@
     flex-direction: row;
     justify-content: space-between;
 }
+
